@@ -92,6 +92,7 @@ img.small-icon {
 footer {
   font-family: monospace;
   margin-top: 30px;
-  text-align: right;
+  text-align: center;
   opacity: 0.6;
+  font-size: 20px;
 }
