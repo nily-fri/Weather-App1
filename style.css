@@ -1,0 +1,97 @@
+.container {
+  margin: 10px 20px;
+  display: block;
+  max-width: 300;
+  width: 484px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  font-family: "Roboto", sans-serif;
+}
+h1 {
+  display: block;
+  font-size: 42px;
+}
+
+h2 {
+  display: block;
+  font-size: 20px;
+  position: relative;
+  left: 10px;
+}
+
+.search-city {
+  position: relative;
+  left: 172px;
+  bottom: 79px;
+  margin-left: 42px;
+}
+
+.search-engine {
+  position: relative;
+  left: 184px;
+  bottom: 24px;
+}
+
+.pin-icon {
+  position: relative;
+  left: 184px;
+  bottom: 24px;
+  font-weight: bolder;
+}
+.exact-conditions {
+  margin-top: -44px;
+}
+
+.today-temp {
+  position: relative;
+  bottom: 81px;
+  left: 65px;
+}
+
+.exact-temp {
+  font-size: 48px;
+}
+.degrees {
+  position: relative;
+  top: -25px;
+  font-size: 20px;
+  padding-left: 10px;
+}
+ul {
+  padding-left: 10px;
+}
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+img.big-icon {
+  width: 60px;
+  padding-bottom: 20px;
+  padding-right: 5px;
+}
+
+img.small-icon {
+  width: 20px;
+  position: relative;
+  left: 0;
+}
+
+.week {
+  margin: -58px 0 17px 3px;
+}
+
+.col-2 {
+  text-align: center;
+  margin-right: 10px;
+}
+
+footer {
+  font-family: monospace;
+  margin-top: 30px;
+  text-align: right;
+  opacity: 0.6;
+}
