@@ -90,7 +90,12 @@ function showTemp(response) {
   document.querySelector("#feels_like").innerHTML = `${Math.round(
     response.data.main.feels_like
   )}`;
-  console.log(response);
+  document.querySelector("#higher-temp").innerHTML = `${Math.round(
+    response.data.main.temp_max
+  )}`;
+  document.querySelector("#lower-temp").innerHTML = `${Math.round(
+    response.data.main.temp_min
+  )}`;
 }
 
 function getCityTemp(cityName, unit = "metric") {
