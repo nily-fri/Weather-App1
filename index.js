@@ -91,6 +91,8 @@ function showTemp(response) {
     response.data.main.feels_like
   )}`;
 
+  console.log(response.data);
+
   // document.querySelector("#higher-temp").value = `${Math.round(
   //   response.data.main.temp_max
   // )}`;

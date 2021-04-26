@@ -68,6 +68,10 @@ a {
   color: black;
 }
 
+.higher-temp {
+  font-weight: bold;
+}
+
 img.big-icon {
   width: 60px;
   padding-bottom: 20px;
