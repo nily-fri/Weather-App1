@@ -68,8 +68,8 @@ a {
   color: black;
 }
 
-.higher-temp {
-  font-weight: bold;
+.lower-temp {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 img.big-icon {
