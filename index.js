@@ -58,6 +58,7 @@ function unitContentF(event) {
 
   let unitF = document.querySelector(".exact-temp");
   unitF.innerHTML = tempInFahrenheit;
+  document.querySelector("#speed-unit").innerHTML = `mph`;
 }
 
 function unitContentC(event) {
@@ -68,6 +69,7 @@ function unitContentC(event) {
 
   let unitC = document.querySelector(".exact-temp");
   unitC.innerHTML = tempInCelsius;
+  document.querySelector("#speed-unit").innerHTML = `km/h`;
 }
 
 function search(event) {
