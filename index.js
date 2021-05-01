@@ -114,3 +114,5 @@ changeUnitF.addEventListener("click", unitContentF);
 let changeUnitC = document.querySelector("#celsius");
 
 changeUnitC.addEventListener("click", unitContentC);
+
+getCityTemp("Tel Aviv", "metric");
