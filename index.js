@@ -102,10 +102,7 @@ function showTemp(response) {
     response.data.main.temp_min
   )}°`;
   let iconElement = document.querySelector(".big-icon");
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
+  iconElement.setAttribute("src", `png/${response.data.weather[0].icon}.png`);
 }
 
 function getCityTemp(cityName, unit = "metric") {
