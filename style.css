@@ -1,8 +1,8 @@
 .container {
-  margin: 10px 20px;
+  margin: 36px 64px;
   display: block;
   max-width: 300;
-  width: 484px;
+  width: 560px;
   border: 1px solid rgba(0, 0, 0, 0.23);
   font-family: "Roboto", sans-serif;
 }
@@ -20,7 +20,7 @@ h2 {
 
 .search-city {
   position: relative;
-  left: 172px;
+  left: 243px;
   bottom: 79px;
   margin-left: 42px;
 }
