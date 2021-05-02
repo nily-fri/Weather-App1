@@ -54,10 +54,10 @@ function unitContentF(event) {
   event.preventDefault();
   let heading = document.querySelector("#city");
   currentCityName = heading.innerHTML;
-  tempInFahrenheit = getCityTemp(currentCityName, (unit = "imperial"));
+  getCityTemp(currentCityName, (unit = "imperial"));
 
-  let unitF = document.querySelector(".exact-temp");
-  unitF.innerHTML = tempInFahrenheit;
+  // let unitF = document.querySelector(".exact-temp");
+  // unitF.innerHTML = tempInFahrenheit;
   document.querySelector("#speed-unit").innerHTML = `mph`;
 }
 
@@ -65,10 +65,10 @@ function unitContentC(event) {
   event.preventDefault();
   let heading = document.querySelector("#city");
   currentCityName = heading.innerHTML;
-  tempInCelsius = getCityTemp(currentCityName);
+  getCityTemp(currentCityName);
 
-  let unitC = document.querySelector(".exact-temp");
-  unitC.innerHTML = tempInCelsius;
+  // let unitC = document.querySelector(".exact-temp");
+  // unitC.innerHTML = tempInCelsius;
   document.querySelector("#speed-unit").innerHTML = `km/h`;
 }
 
