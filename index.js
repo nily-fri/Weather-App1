@@ -75,6 +75,14 @@ function search(event) {
   getCityTemp(searchInput);
 }
 
+function getForecast(coordinates) {
+  let apiKey = "2f414cfeda6c23227c61d396f90f0949";
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemp(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector(".exact-temp").innerHTML = `${Math.round(
@@ -97,6 +105,8 @@ function showTemp(response) {
   )}°`;
   let iconElement = document.querySelector(".big-icon");
   iconElement.setAttribute("src", `png/${response.data.weather[0].icon}.png`);
+
+  getForecast(response.data.coord);
 }
 
 function getCityTemp(cityName, unit = "metric") {
@@ -105,10 +115,13 @@ function getCityTemp(cityName, unit = "metric") {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemp);
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#week-forecast");
 
-  let days = ["THU", "FRI", "SAT", "SUN", "MON"];
+  let days = response.data.daily;
+  // let iconElement = document.querySelector(".small-icon");
+  // iconElement.setAttribute("src", `png/${days.weather[0].icon}.png`);
 
   let forecastHTML = `<div`;
   days.forEach(function (day) {
@@ -116,18 +129,19 @@ function displayForecast() {
       forecastHTML +
       `
       <div class="col-2 card">
-         <div>${day}</div>
+         <div>${day.dt}</div>
             <div>
               <img
-                src="png/01d.png"
                 alt="sun-icon"
                 class="small-icon"
                 width="20px"
               />
             </div>
             <div class="row">
-              <span class="higher-temp">20°</span> <br />
-              <span class="lower-temp">14°</span>
+              <span class="higher-temp">${Math.round(
+                day.temp.max
+              )}°</span> <br />
+              <span class="lower-temp">${Math.round(day.temp.min)}°</span>
             </div>
           </div>
         `;
@@ -149,5 +163,3 @@ let changeUnitC = document.querySelector("#celsius");
 changeUnitC.addEventListener("click", unitContentC);
 
 getCityTemp("Tel Aviv", "metric");
-
-displayForecast();
