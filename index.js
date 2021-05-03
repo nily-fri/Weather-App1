@@ -55,9 +55,6 @@ function unitContentF(event) {
   let heading = document.querySelector("#city");
   currentCityName = heading.innerHTML;
   getCityTemp(currentCityName, (unit = "imperial"));
-
-  // let unitF = document.querySelector(".exact-temp");
-  // unitF.innerHTML = tempInFahrenheit;
   document.querySelector("#speed-unit").innerHTML = `mph`;
 }
 
@@ -66,9 +63,6 @@ function unitContentC(event) {
   let heading = document.querySelector("#city");
   currentCityName = heading.innerHTML;
   getCityTemp(currentCityName);
-
-  // let unitC = document.querySelector(".exact-temp");
-  // unitC.innerHTML = tempInCelsius;
   document.querySelector("#speed-unit").innerHTML = `km/h`;
 }
 
@@ -111,6 +105,38 @@ function getCityTemp(cityName, unit = "metric") {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemp);
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#week-forecast");
+
+  let days = ["THU", "FRI", "SAT", "SUN", "MON"];
+
+  let forecastHTML = `<div`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2 card">
+         <div>${day}</div>
+            <div>
+              <img
+                src="png/01d.png"
+                alt="sun-icon"
+                class="small-icon"
+                width="20px"
+              />
+            </div>
+            <div class="row">
+              <span class="higher-temp">20°</span> <br />
+              <span class="lower-temp">14°</span>
+            </div>
+          </div>
+        `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let form = document.querySelector(".search-city");
 form.addEventListener("submit", search);
 
@@ -123,3 +149,5 @@ let changeUnitC = document.querySelector("#celsius");
 changeUnitC.addEventListener("click", unitContentC);
 
 getCityTemp("Tel Aviv", "metric");
+
+displayForecast();
