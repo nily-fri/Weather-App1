@@ -86,9 +86,12 @@ img.small-icon {
 }
 
 .week {
-  margin: -58px 0 17px 3px;
+  margin: -58px 0 17px 23px;
 }
 
+.col-4 {
+  margin-left: 40px;
+}
 .col-2 {
   text-align: center;
   margin-right: 10px;
