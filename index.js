@@ -24,6 +24,13 @@ function formatDate() {
 
   return showDate;
 }
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  return days[day];
+}
 let todayDate = document.querySelector("#today-date");
 todayDate.innerHTML = formatDate();
 
@@ -117,21 +124,30 @@ function getCityTemp(cityName, unit = "metric") {
 
 function displayForecast(response) {
   console.log(response.data.daily);
+  console.log(response.data.daily[0].weather[0].icon);
+
   let forecastElement = document.querySelector("#week-forecast");
 
   let days = response.data.daily;
   // let iconElement = document.querySelector(".small-icon");
-  // iconElement.setAttribute("src", `png/${days.weather[0].icon}.png`);
+  // iconElement.setAttribute(
+  //   "alt",
+  //   `png/${response.data.daily[0].weather[0].icon}.png`
+  // );
 
   let forecastHTML = `<div`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  days.forEach(function (day, index) {
+    if (index < 6 && index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `
       <div class="col-2 card">
-         <div>${day.dt}</div>
+         <div>${formatDay(day.dt)}</div>
             <div>
               <img
+                src="http://openweathermap.org/img/wn/${
+                  response.data.daily[0].weather[0].icon
+                }@2x.png"
                 alt="sun-icon"
                 class="small-icon"
                 width="20px"
@@ -145,6 +161,7 @@ function displayForecast(response) {
             </div>
           </div>
         `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
