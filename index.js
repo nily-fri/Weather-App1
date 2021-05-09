@@ -42,7 +42,7 @@ function showTemprature(response) {
 }
 
 function handlePosition(position) {
-  console.log(position);
+  // console.log(position);
   let apiKey = "2f414cfeda6c23227c61d396f90f0949";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -63,7 +63,15 @@ function unitContentF(event) {
   let heading = document.querySelector("#city");
   currentCityName = heading.innerHTML;
   getCityTemp(currentCityName, (unit = "imperial"));
+  getCityForcast(currentCityName, (unit = "imperial"));
   document.querySelector("#speed-unit").innerHTML = `mph`;
+
+  //   let smallMax = document.querySelector("#small-max").innerHTML;
+  //   console.log(smallMax);
+
+  //   let smallMaxTemp = (smallMax * 9) / 5 + 32;
+  //   console.log(smallMaxTemp);
+  //   smallMax.innerHTML = Math.round(smallMaxTemp);
 }
 
 function unitContentC(event) {
@@ -71,6 +79,7 @@ function unitContentC(event) {
   let heading = document.querySelector("#city");
   currentCityName = heading.innerHTML;
   getCityTemp(currentCityName);
+  getCityForcast(currentCityName, "metric");
   document.querySelector("#speed-unit").innerHTML = `km/h`;
 }
 
@@ -83,10 +92,10 @@ function search(event) {
   getCityTemp(searchInput);
 }
 
-function getForecast(coordinates) {
+function getForecast(coordinates, unit = "metric") {
   let apiKey = "2f414cfeda6c23227c61d396f90f0949";
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
 
   axios.get(apiUrl).then(displayForecast);
 }
@@ -123,8 +132,29 @@ function getCityTemp(cityName, unit = "metric") {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemp);
 }
 
+function getCityForcast(cityName, unit = "metric") {
+  // getting city coordinates through the first API
+  let apiKey = "2f414cfeda6c23227c61d396f90f0949";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}`;
+  if (unit === "metric") {
+    axios.get(`${apiUrl}&appid=${apiKey}`).then(getForecastByCityMetric);
+  } else {
+    axios.get(`${apiUrl}&appid=${apiKey}`).then(getForecastByCityImperial);
+  }
+}
+function getForecastByCityMetric(response) {
+  coords = response.data.coord;
+  // console.log(coords);
+  getForecast(coords, "metric");
+}
+function getForecastByCityImperial(response) {
+  coords = response.data.coord;
+  // console.log(coords);
+  getForecast(coords, "imperial");
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  // console.log(response.data.daily);
 
   let forecastElement = document.querySelector("#week-forecast");
 
@@ -147,10 +177,12 @@ function displayForecast(response) {
               />
             </div>
             <div class="row">
-              <span class="higher-temp">${Math.round(
+              <span class="higher-temp" id="small-max">${Math.round(
                 day.temp.max
               )}°</span> <br />
-              <span class="lower-temp">${Math.round(day.temp.min)}°</span>
+              <span class="lower-temp" id="small-min">${Math.round(
+                day.temp.min
+              )}°</span>
             </div>
           </div>
         `;
